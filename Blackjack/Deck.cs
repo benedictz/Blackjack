@@ -34,7 +34,6 @@ namespace Blackjack
                         rankValues.Add(maxLimitRank + 10);
                     }
                     Card card = new();
-
                     card.CreateValues(suit, rank, rankValues);
                     currDeck.Add(card);
                 }
@@ -42,10 +41,9 @@ namespace Blackjack
             Console.WriteLine("Deck has been created!");        //DEBUG
         }
 
-        private static Random rng = new Random();
-
         private void Shuffle()
         {
+            Console.WriteLine("Shuffling Deck");        //DEBUG
             List<Card> tempDeck = new();
             Random rnd = new Random();
             while (currDeck.Count > 1)
