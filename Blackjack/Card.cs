@@ -12,14 +12,14 @@ namespace Blackjack
         SuitRanks.Ranks _currRank;
         List<int> _values = new List<int>();
 
-        public void createValues(SuitRanks.Suits suit, SuitRanks.Ranks rank, List<int> values)
+        public void CreateValues(SuitRanks.Suits suit, SuitRanks.Ranks rank, List<int> values)
         {
             _currSuit = suit;
             _currRank = rank;
             _values = values;
         }
 
-        public void readValue()
+        public void ReadValue()
         {
             string strValues = _values[0].ToString();
             for (int i = 1; i < _values.Count; i++)
@@ -27,7 +27,7 @@ namespace Blackjack
                 strValues += (" or " + _values[i]);
             }
 
-            Console.WriteLine($"This is the {_currRank} of {_currSuit}, with the value of {strValues}");
+            Console.WriteLine($"{_currRank} of {_currSuit}, value of {strValues}");
         }
     }
 }

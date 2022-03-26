@@ -13,9 +13,10 @@ namespace Blackjack
         {
             Create();
             Console.WriteLine($"This deck has {currDeck.Count} cards");         //DEBUG
+            Shuffle();
             foreach(Card card in currDeck)                                      //DEBUG
             {
-                card.readValue();
+                card.ReadValue();
             }
         }
 
@@ -34,16 +35,26 @@ namespace Blackjack
                     }
                     Card card = new();
 
-                    card.createValues(suit, rank, rankValues);
+                    card.CreateValues(suit, rank, rankValues);
                     currDeck.Add(card);
                 }
             }
             Console.WriteLine("Deck has been created!");        //DEBUG
         }
 
-        private void Shuffle(List<Card> freshDeck)
-        {
+        private static Random rng = new Random();
 
+        private void Shuffle()
+        {
+            List<Card> tempDeck = new();
+            Random rnd = new Random();
+            while (currDeck.Count > 1)
+            {
+                int randNum = rnd.Next(0, currDeck.Count);
+                tempDeck.Add(currDeck[randNum]);
+                currDeck.RemoveAt(randNum);
+            }
+            currDeck = tempDeck;
         }
     }
 }
