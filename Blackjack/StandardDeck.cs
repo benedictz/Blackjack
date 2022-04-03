@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    class Deck
+    class StandardDeck
     {
-        private List<Card> currDeck = new();
+        private List<StandardCard> currDeck = new();
         public void NewDeck() 
         {
             Create();
-            Console.WriteLine($"This deck has {currDeck.Count} cards");         //DEBUG
-            Shuffle();
-            foreach(Card card in currDeck)                                      //DEBUG
+            TrueShuffle();
+
+            foreach (StandardCard card in currDeck)                         //DEBUG
             {
                 card.ReadValue();
             }
@@ -33,18 +33,21 @@ namespace Blackjack
                     {
                         rankValues.Add(maxLimitRank + 10);
                     }
-                    Card card = new();
+                    StandardCard card = new();
                     card.CreateValues(suit, rank, rankValues);
                     currDeck.Add(card);
                 }
             }
-            Console.WriteLine("Deck has been created!");        //DEBUG
+            Console.WriteLine($"Deck of {currDeck.Count} cards has been created!");        //DEBUG
         }
 
-        private void Shuffle()
+        /// <summary>
+        /// Pure randomisation of all cards. Lacks authenticity, but it gets the job done.
+        /// </summary>
+        public void TrueShuffle()
         {
-            Console.WriteLine("Shuffling Deck");        //DEBUG
-            List<Card> tempDeck = new();
+            Console.WriteLine("True Shuffle");        //DEBUG
+            List<StandardCard> tempDeck = new();
             Random rnd = new Random();
             while (currDeck.Count > 1)
             {
@@ -52,7 +55,7 @@ namespace Blackjack
                 tempDeck.Add(currDeck[randNum]);
                 currDeck.RemoveAt(randNum);
             }
-            currDeck = tempDeck;
+            currDeck.AddRange(tempDeck);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Blackjack
     {
         public static void Start () {
             Console.WriteLine("Begin Blackjack");
-            Deck deck = new();
+            StandardDeck deck = new();
             deck.NewDeck();
             }
     }

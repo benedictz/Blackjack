@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    class Card
+    class StandardCard : AbstractCard
     {
         SuitRanks.Suits _currSuit;
         SuitRanks.Ranks _currRank;
@@ -17,6 +17,7 @@ namespace Blackjack
             _currSuit = suit;
             _currRank = rank;
             _values = values;
+            description = _currRank.ToString() + " of " + _currSuit.ToString();
         }
 
         public void ReadValue()
@@ -27,7 +28,7 @@ namespace Blackjack
                 strValues += (" or " + _values[i]);
             }
 
-            Console.WriteLine($"{_currRank} of {_currSuit}, value of {strValues}");
+            Console.WriteLine($"{description}, value of {strValues}");
         }
     }
 }
