@@ -8,18 +8,21 @@ namespace Blackjack
 {
     class StandardCard : AbstractCard
     {
-        SuitRanks.Suits _currSuit;
-        SuitRanks.Ranks _currRank;
-        List<int> _values = new List<int>();
+        private RankSuit.Ranks _currRank;
+        private RankSuit.Suits _currSuit;
+        private List<int> _values = new List<int>();
 
-        public void CreateValues(SuitRanks.Suits suit, SuitRanks.Ranks rank, List<int> values)
+        public void CreateValues(RankSuit.Ranks rank, RankSuit.Suits suit, List<int> values)
         {
-            _currSuit = suit;
             _currRank = rank;
+            _currSuit = suit;
             _values = values;
             description = _currRank.ToString() + " of " + _currSuit.ToString();
         }
 
+        /// <summary>
+        /// Returns the Rank, Suit and all Values associated with this card
+        /// </summary>
         public void ReadValue()
         {
             string strValues = _values[0].ToString();

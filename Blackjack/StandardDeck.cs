@@ -8,23 +8,21 @@ namespace Blackjack
 {
     class StandardDeck
     {
-        private List<StandardCard> currDeck = new();
-        public void NewDeck() 
+        private List<StandardCard> currDeck;
+        public StandardDeck()
         {
             Create();
-            TrueShuffle();
-
-            foreach (StandardCard card in currDeck)                         //DEBUG
-            {
-                card.ReadValue();
-            }
         }
 
+        /// <summary>
+        /// Wipes the current deck and creates a new standard deck of cards
+        /// </summary>
         private void Create()
         {
-            foreach (SuitRanks.Suits suit in Enum.GetValues(typeof(SuitRanks.Suits)))
+            currDeck = new();
+            foreach (RankSuit.Suits suit in Enum.GetValues(typeof(RankSuit.Suits)))
             {
-                foreach (SuitRanks.Ranks rank in Enum.GetValues(typeof(SuitRanks.Ranks)))
+                foreach (RankSuit.Ranks rank in Enum.GetValues(typeof(RankSuit.Ranks)))
                 {
                     List<int> rankValues = new List<int>();
                     int maxLimitRank = Math.Min(10, (int)rank + 1);
@@ -34,7 +32,7 @@ namespace Blackjack
                         rankValues.Add(maxLimitRank + 10);
                     }
                     StandardCard card = new();
-                    card.CreateValues(suit, rank, rankValues);
+                    card.CreateValues(rank, suit, rankValues);
                     currDeck.Add(card);
                 }
             }
@@ -42,7 +40,18 @@ namespace Blackjack
         }
 
         /// <summary>
-        /// Pure randomisation of all cards. Lacks authenticity, but it gets the job done.
+        /// Reads all cards currently in the deck
+        /// </summary>
+        public void ReadCards()
+        {
+            foreach (StandardCard card in currDeck)                         //DEBUG
+            {
+                card.ReadValue();
+            }
+        }
+
+        /// <summary>
+        /// Pure randomisation of all cards.
         /// </summary>
         public void TrueShuffle()
         {

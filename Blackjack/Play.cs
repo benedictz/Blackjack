@@ -11,7 +11,8 @@ namespace Blackjack
         public static void Start () {
             Console.WriteLine("Begin Blackjack");
             StandardDeck deck = new();
-            deck.NewDeck();
-            }
+            deck.TrueShuffle();
+            deck.ReadCards();
+        }
     }
 }
